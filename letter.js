@@ -125,3 +125,48 @@ $(el).on("click", function () {
     $("#box").addClass("hide");
   }, 700); // ← регулируй тут
 });
+const values = { tens: 0, ones: 0 };
+  const padlock = document.getElementById('padlock');
+  const content = document.getElementById('content');
+
+  function updateRoller(id, value) {
+    const roller = document.getElementById(id);
+    roller.style.transform = `translateY(${-72 * value}px)`;
+  }
+
+  document.querySelectorAll('.btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const target = btn.dataset.target;
+      const up = btn.classList.contains('up');
+
+      values[target] = up
+        ? (values[target] + 1) % 10
+        : (values[target] + 9) % 10;
+
+      updateRoller(target, values[target]);
+      checkCode();
+    });
+  });
+
+  function checkCode() {
+  if (values.tens === 2 && values.ones === 3) {
+
+    // 🔓 открываем замок
+    padlock.classList.add('open');
+
+    // ⏳ даём доиграть анимации
+    setTimeout(() => {
+      // ❌ убираем сцену замка
+      document.querySelector('.lock-scene').classList.add('hide');
+
+      // ❤️ показываем сердце
+      document.getElementById('box').classList.add('show');
+    }, 1200);
+
+  } else {
+    padlock.classList.remove('open');
+
+    padlock.classList.add('shake');
+    setTimeout(() => padlock.classList.remove('shake'), 300);
+  }
+}
