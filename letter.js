@@ -125,14 +125,95 @@ $(el).on("click", function () {
     $("#box").addClass("hide");
   }, 700); // ← регулируй тут
 });
-const values = { tens: 0, ones: 0 };
-  const padlock = document.getElementById('padlock');
-  const content = document.getElementById('content');
+// ===== ELECTRIC LOCK (4 digits) =====
+(() => {
+const CODE = "2012"; // ← тут меняешь пароль на любой 4-значный
 
-  function updateRoller(id, value) {
-    const roller = document.getElementById(id);
-    roller.style.transform = `translateY(${-72 * value}px)`;
+  const lockScene = document.getElementById("lockScene");
+  const electricLock = document.getElementById("electricLock");
+  const led = document.getElementById("lockLed");
+  const dots = document.getElementById("displayDots");
+  const status = document.getElementById("displayStatus");
+  const box = document.getElementById("box");
+
+  let input = "";
+
+  function render() {
+    // показываем точки вместо цифр
+    const filled = "●".repeat(input.length);
+    const empty = "—".repeat(4 - input.length);
+    dots.textContent = (filled + empty).split("").join(" ");
   }
+
+  function setState(type, text) {
+    led.classList.remove("ready", "ok", "bad");
+    if (type) led.classList.add(type);
+    status.textContent = text || "";
+  }
+
+  function resetSoft() {
+    input = "";
+    render();
+    setState("ready", "Enter 4-digit code");
+  }
+
+  function fail() {
+    setState("bad", "Wrong code");
+    electricLock.classList.add("shake");
+    setTimeout(() => electricLock.classList.remove("shake"), 280);
+    setTimeout(resetSoft, 650);
+  }
+
+  function success() {
+    setState("ok", "UNLOCKED");
+    // небольшая пауза, чтобы увидеть успех
+    setTimeout(() => {
+      electricLock.classList.add("unlocking"); // плавно исчезаем
+    }, 450);
+
+    setTimeout(() => {
+      // прячем сцену замка
+      lockScene.classList.add("hide");
+      // показываем сердце
+      box.classList.add("show");
+    }, 1100);
+  }
+
+  // обработка кликов по кнопкам
+  document.querySelectorAll(".key").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const k = btn.dataset.key;
+      const action = btn.dataset.action;
+
+      if (action === "clear") {
+        resetSoft();
+        return;
+      }
+      if (action === "back") {
+        input = input.slice(0, -1);
+        render();
+        setState("ready", "Enter 4-digit code");
+        return;
+      }
+
+      if (!k) return;
+
+      if (input.length >= 4) return; // не даём больше 4 цифр
+      input += k;
+      render();
+
+      if (input.length === 4) {
+        if (input === CODE) success();
+        else fail();
+      } else {
+        setState("ready", "Enter 4-digit code");
+      }
+    });
+  });
+
+  // стартовое состояние
+  resetSoft();
+})();
 
   document.querySelectorAll('.btn').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -149,25 +230,14 @@ const values = { tens: 0, ones: 0 };
   });
 
   function checkCode() {
-  if (values.tens === 8 && values.ones === 7) {
+    if (values.tens === 2 && values.ones === 3) {
+      padlock.classList.add('open');
+      content.classList.add('visible');
+    } else {
+      padlock.classList.remove('open');
+      content.classList.remove('visible');
 
-    // 🔓 открываем замок
-    padlock.classList.add('open');
-
-    // ⏳ даём доиграть анимации
-    setTimeout(() => {
-      // ❌ убираем сцену замка
-      document.querySelector('.lock-scene').classList.add('hide');
-
-      // ❤️ показываем сердце
-      document.getElementById('box').classList.add('show');
-    }, 1200);
-
-  } else {
-    padlock.classList.remove('open');
-
-    padlock.classList.add('shake');
-    setTimeout(() => padlock.classList.remove('shake'), 300);
+      padlock.classList.add('shake');
+      setTimeout(() => padlock.classList.remove('shake'), 300);
+    }
   }
-}
-
