@@ -104,7 +104,7 @@
   width: 210px;
   height: 158px;
   z-index: 2;
-  visibility: hidden;
+  opacity: 0;
 }
 .photo3 {
   position: absolute;
@@ -112,6 +112,15 @@
   left: 75%;
   width: 125px;
   height: 369px;
+  z-index: 2;
+  opacity: 0;
+}
+.photo4 {
+  position: absolute;
+  top: 40%;
+  left: 10%;
+  width: 210px;
+  height: 158px;
   z-index: 2;
   opacity: 0;
 }
@@ -136,9 +145,9 @@
 }
 .open .photo2{
   transform: translateY(-250px) translateX(450px) rotate(20deg);
-  transition: transform 0.4s 0.6s ease, z-index 1.6s;
-  z-index: 3;
-  visibility: visible;
+  transition: transform 0.4s 0.6s ease, z-index 2.4s;
+  z-index: 5;
+  opacity: 1;
 }
 .open .photo3{
   opacity: 1;
@@ -147,6 +156,17 @@
   z-index: 3;
 }
 .close .photo3{
+  transform: translateY(0px);
+  transition: transform 0.4s ease, z-index 1s;
+  z-index: 1;
+}
+.open .photo4{
+  opacity: 1;
+  transform: translateY(-100px) translateX(337px) rotate(0deg);
+  transition: transform 0.4s 0.6s ease, z-index 2.4s;
+  z-index: 4;
+}
+.close .photo4{
   transform: translateY(0px);
   transition: transform 0.4s ease, z-index 1s;
   z-index: 1;
@@ -392,210 +412,156 @@ svg {
   z-index: 1;
 }
 
-.lock-scene {
+.lock-scene{
   position: fixed;
   z-index: 30;
-  text-align:center;
+  inset: 0;
   background:#1c1c1c;
-  font-family: "SN Pro", sans-serif;
-  color:#eee;
   display:flex;
   justify-content:center;
   align-items:center;
-  height:100%;
-  width:100%;
-  top: 0;
-  left: 0;
   opacity: 1;
   transition: opacity 1s ease;
 }
-/* ===== ЗАМОК ===== */
-.padlock{
-  position: relative;
-  width: 218px;  
-  height: 276px;  
-  margin: 0 auto;
-}
-
-.padlock.shake {
-  animation: shake .3s;
-}
-
-@keyframes shake {
-  0%,100% { transform: translateX(0); }
-  25% { transform: translateX(-4px); }
-  75% { transform: translateX(4px); }
-}
-
-/* ДУЖКА */
-.shackle{
-  position:absolute;
-  top: -45px;        
-  left:50%;
-  width:124px;     
-  height:168px;    
-  border:16px solid #cfcfcf; 
-  border-bottom:none;
-  border-radius: 78px 78px 52px 52px;
-  transform:translateX(-50%);
-  transition: transform 1s ease, opacity 1s ease;
-}
-
-.padlock.open .shackle{
-  transform: translateX(-50%) translateY(-42px) rotate(-25deg);
+.lock-scene.hide{
   opacity: 0;
+  pointer-events: none;
 }
 
-/* КОРПУС */
-.body{
-  position:absolute;
-  bottom:0;
-  left:50%;
-  width:218px;   
-  height: 220px;
-  transform:translateX(-50%);
-  overflow:hidden;
-
-  /* форма — чуть шире “плечи” */
-  -webkit-clip-path: polygon(
-    9% 0%, 91% 0%,
-    97% 7%, 97% 19%,
-    93% 27%, 93% 88%,
-    87% 96%, 13% 96%,
-    7% 88%, 7% 27%,
-    3% 19%, 3% 7%
-  );
-  clip-path: polygon(
-    9% 0%, 91% 0%,
-    97% 7%, 97% 19%,
-    93% 27%, 93% 88%,
-    87% 96%, 13% 96%,
-    7% 88%, 7% 27%,
-    3% 19%, 3% 7%
-  );
-
+/* Электрозамок */
+.electric-lock{
+  width: 340px;
+  border-radius: 18px;
+  padding: 18px;
   background:
-    radial-gradient(150px 115px at 30% 20%, rgba(255,255,255,.35), transparent 60%),
-    linear-gradient(135deg,#e6c57a 0%, #c79b45 35%, #e2bf74 60%, #b8862f 100%);
-
+    radial-gradient(240px 160px at 30% 20%, rgba(255,255,255,.10), transparent 60%),
+    linear-gradient(180deg, #2a2a2a, #141414);
   box-shadow:
-    inset 0 10px 18px rgba(255,255,255,.22),
-    inset 0 -18px 24px rgba(0,0,0,.35),
-    0 22px 34px rgba(0,0,0,.65);
-
-  transition: transform 1s ease, opacity 1s ease;
-}
-.body::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  /* легкая кромка */
-  border: 2px solid rgba(0,0,0,.25);
-  opacity:.45;
-
-  -webkit-clip-path: inherit;
-  clip-path: inherit;
-  pointer-events:none;
+    inset 0 1px 0 rgba(255,255,255,.08),
+    0 22px 45px rgba(0,0,0,.65);
+  border: 1px solid rgba(255,255,255,.08);
+  transform: translateY(0);
+  transition: transform .35s ease, opacity .6s ease;
 }
 
-.body::after{
-  content:"";
-  position:absolute;
-  inset:8px 10px 10px 10px;
-  /* внутренняя ступенька */
-  border: 2px solid rgba(255,255,255,.18);
-  opacity:.55;
-
-  -webkit-clip-path: polygon(
-    10% 0%, 90% 0%,
-    96% 6%, 96% 18%,
-    92% 26%, 92% 88%,
-    86% 96%, 14% 96%,
-    8% 88%, 8% 26%,
-    4% 18%, 4% 6%
-  );
-  clip-path: polygon(
-    10% 0%, 90% 0%,
-    96% 6%, 96% 18%,
-    92% 26%, 92% 88%,
-    86% 96%, 14% 96%,
-    8% 88%, 8% 26%,
-    4% 18%, 4% 6%
-  );
-
-  pointer-events:none;
-}
-.padlock.open .body {
-  transform: translateX(-50%) translateY(40px);
+.electric-lock.unlocking{
+  transform: translateY(10px);
   opacity: 0;
 }
 
-/* ===== ГРАВИРОВКА ===== */
-.engraving {
-  margin-top: 18px;
-  font-size: 16px;
-  letter-spacing: .5px;
-  text-align: center;
-  padding: 0 10px;
-  color: rgba(90,74,58,.6);
-  text-shadow:
-    0 1px 0 rgba(255,255,255,.25),
-    0 -1px 0 rgba(0,0,0,.4);
-  font-family: "Caveat", cursive;
-}
-
-/* ===== КОД ВНУТРИ ===== */
-.code-inside {
-  position:absolute;
-  top:68px;
-  left:50%;
-  transform:translateX(-50%);
+.lock-head{
   display:flex;
-  gap:12px;
-}
-
-.dial {
-  display:flex;
-  flex-direction:column;
+  justify-content:space-between;
   align-items:center;
-  gap:6px;
+  margin-bottom: 12px;
 }
 
-/* ОКОШКО */
-.window {
-  width:64px;
-  height:72px;
-  overflow:hidden;
-  background:#b8a98f;
-  border:2px solid #5a4a3a;
-  border-radius:6px;
-  box-shadow: inset 0 0 6px rgba(0,0,0,.4);
+.lock-title{
+  font-family: monospace;
+  letter-spacing: 2px;
+  font-size: 12px;
+  opacity: .85;
+  color: #d8d8d8;
 }
 
-.roller {
-  transition: transform .4s ease;
+.lock-led{
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  background: #444;
+  box-shadow: 0 0 0 rgba(0,0,0,0);
+  transition: background .2s ease, box-shadow .2s ease;
+}
+.lock-led.ready{
+  background: #6aa6ff;
+  box-shadow: 0 0 18px rgba(106,166,255,.45);
+}
+.lock-led.ok{
+  background: #44d17a;
+  box-shadow: 0 0 20px rgba(68,209,122,.55);
+}
+.lock-led.bad{
+  background: #ff4d4d;
+  box-shadow: 0 0 20px rgba(255,77,77,.45);
 }
 
-.roller span {
-  display:block;
-  height:72px;
-  line-height:72px;
-  font-size:44px;
-  text-align:center;
+/* Дисплей */
+.lock-display{
+  border-radius: 14px;
+  padding: 14px 14px 12px;
+  background:
+    radial-gradient(240px 120px at 30% 20%, rgba(255,255,255,.08), transparent 65%),
+    linear-gradient(180deg, #0f1b14, #08110c);
+  border: 1px solid rgba(255,255,255,.08);
+  box-shadow: inset 0 0 18px rgba(0,0,0,.6);
+  margin-bottom: 14px;
 }
 
-/* КНОПКИ */
-.btn {
-  background:none;
-  border:none;
-  color:#5a4a3a;
+.display-label{
+  font-family: "Caveat", cursive;
+  font-size: 18px;
+  color: rgba(170, 240, 200, .9);
+  opacity: .95;
+  margin-bottom: 6px;
+}
+
+.display-dots{
+  font-family: monospace;
+  font-size: 28px;
+  letter-spacing: 6px;
+  color: #78ffb5;
+  text-shadow: 0 0 12px rgba(120,255,181,.28);
+  margin-bottom: 6px;
+}
+
+.display-status{
+  font-family: monospace;
+  font-size: 12px;
+  opacity: .85;
+  color: rgba(200,255,225,.75);
+}
+
+/* Keypad */
+.keypad{
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.key{
+  border: none;
+  border-radius: 12px;
+  padding: 14px 0;
+  font-size: 18px;
+  color: #eaeaea;
+  background:
+    radial-gradient(80px 40px at 30% 20%, rgba(255,255,255,.12), transparent 60%),
+    linear-gradient(180deg, #3a3a3a, #1e1e1e);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.10),
+    0 10px 18px rgba(0,0,0,.45);
   cursor:pointer;
-  font-size:16px;
-  transition: transform .15s;
+  transition: transform .08s ease, filter .2s ease;
+  user-select:none;
+}
+.key:hover{ filter: brightness(1.08); }
+.key:active{ transform: translateY(1px) scale(0.99); }
+
+.key.key-fn{
+  background:
+    radial-gradient(80px 40px at 30% 20%, rgba(255,255,255,.10), transparent 60%),
+    linear-gradient(180deg, #2f2f2f, #141414);
+  color: #f1d9a8;
 }
 
-.btn:hover {
-  transform: scale(1.2);
+/* Ошибка/успех эффекты */
+.electric-lock.shake{
+  animation: elShake .28s;
+}
+@keyframes elShake{
+  0%,100%{ transform: translateX(0); }
+  25%{ transform: translateX(-5px); }
+  75%{ transform: translateX(5px); }
 }
 .lock-scene.hide {
   opacity: 0;
