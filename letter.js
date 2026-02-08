@@ -127,7 +127,7 @@ $(el).on("click", function () {
 });
 // ===== ELECTRIC LOCK (4 digits) =====
 (() => {
-const CODE = "2012"; // ← тут меняешь пароль на любой 4-значный
+const CODE = "5139"; // ← тут меняешь пароль на любой 4-значный
 
   const lockScene = document.getElementById("lockScene");
   const electricLock = document.getElementById("electricLock");
@@ -241,3 +241,4 @@ const CODE = "2012"; // ← тут меняешь пароль на любой 4
       setTimeout(() => padlock.classList.remove('shake'), 300);
     }
   }
+
