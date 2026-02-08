@@ -149,7 +149,7 @@ const values = { tens: 0, ones: 0 };
   });
 
   function checkCode() {
-  if (values.tens === 2 && values.ones === 3) {
+  if (values.tens === 8 && values.ones === 7) {
 
     // 🔓 открываем замок
     padlock.classList.add('open');
@@ -170,3 +170,4 @@ const values = { tens: 0, ones: 0 };
     setTimeout(() => padlock.classList.remove('shake'), 300);
   }
 }
+
