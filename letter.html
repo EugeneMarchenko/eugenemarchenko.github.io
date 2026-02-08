@@ -5,10 +5,51 @@
     <title>Letter</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Caveat&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=SN+Pro&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="letter.css" />
   </head>
   <body>
+    <div class="lock-scene">
+
+  <div id="padlock" class="padlock">
+
+    <div class="shackle"></div>
+
+    <div class="body">
+
+      <div class="engraving">
+        Відповідь схована в твоєму улюбленому числі
+      </div>
+
+      <div class="code-inside">
+
+        <div class="dial">
+          <button class="btn up" data-target="tens">▲</button>
+          <div class="window">
+            <div id="tens" class="roller">
+              <span>0</span><span>1</span><span>2</span><span>3</span><span>4</span>
+              <span>5</span><span>6</span><span>7</span><span>8</span><span>9</span>
+            </div>
+          </div>
+          <button class="btn down" data-target="tens">▼</button>
+        </div>
+
+        <div class="dial">
+          <button class="btn up" data-target="ones">▲</button>
+          <div class="window">
+            <div id="ones" class="roller">
+              <span>0</span><span>1</span><span>2</span><span>3</span><span>4</span>
+              <span>5</span><span>6</span><span>7</span><span>8</span><span>9</span>
+            </div>
+          </div>
+          <button class="btn down" data-target="ones">▼</button>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
     <div id="box">
       <div class="container">
   <div class="heart">
