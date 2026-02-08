@@ -9,45 +9,38 @@
     <link rel="stylesheet" href="letter.css" />
   </head>
   <body>
-    <div class="lock-scene">
+    <div class="lock-scene" id="lockScene">
+  <div class="electric-lock" id="electricLock">
 
-  <div id="padlock" class="padlock">
-
-    <div class="shackle"></div>
-
-    <div class="body">
-
-      <div class="engraving">
-        А тепер вгадаєш?
-      </div>
-
-      <div class="code-inside">
-
-        <div class="dial">
-          <button class="btn up" data-target="tens">▲</button>
-          <div class="window">
-            <div id="tens" class="roller">
-              <span>0</span><span>1</span><span>2</span><span>3</span><span>4</span>
-              <span>5</span><span>6</span><span>7</span><span>8</span><span>9</span>
-            </div>
-          </div>
-          <button class="btn down" data-target="tens">▼</button>
-        </div>
-
-        <div class="dial">
-          <button class="btn up" data-target="ones">▲</button>
-          <div class="window">
-            <div id="ones" class="roller">
-              <span>0</span><span>1</span><span>2</span><span>3</span><span>4</span>
-              <span>5</span><span>6</span><span>7</span><span>8</span><span>9</span>
-            </div>
-          </div>
-          <button class="btn down" data-target="ones">▼</button>
-        </div>
-
-      </div>
-
+    <div class="lock-head">
+      <div class="lock-title">SECURE ACCESS</div>
+      <div class="lock-led" id="lockLed"></div>
     </div>
+
+    <div class="lock-display">
+      <div class="display-label">Код — це твоє улюблене число</div>
+      <div class="display-dots" id="displayDots">----</div>
+      <div class="display-status" id="displayStatus">Enter 4-digit code</div>
+    </div>
+
+    <div class="keypad">
+      <button class="key" data-key="1">1</button>
+      <button class="key" data-key="2">2</button>
+      <button class="key" data-key="3">3</button>
+
+      <button class="key" data-key="4">4</button>
+      <button class="key" data-key="5">5</button>
+      <button class="key" data-key="6">6</button>
+
+      <button class="key" data-key="7">7</button>
+      <button class="key" data-key="8">8</button>
+      <button class="key" data-key="9">9</button>
+
+      <button class="key key-fn" data-action="clear">C</button>
+      <button class="key" data-key="0">0</button>
+      <button class="key key-fn" data-action="back">⌫</button>
+    </div>
+
   </div>
 </div>
     <div id="box">
@@ -78,6 +71,7 @@
         </div>
         <div class="photo2"><img src="together3.jpeg" height="100%"></div>
         <div class="photo3"><img src="together4.jpg" height="100%"></div>
+        <div class="photo4"> <img src="together5.jpg" height="100%"></div>
       </div>
     </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -92,5 +86,3 @@
 </script>
   </body>
 </html>
-
-
