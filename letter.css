@@ -124,6 +124,15 @@
   z-index: 2;
   opacity: 0;
 }
+.photo5 {
+  position: absolute;
+  top: 40%;
+  left: 10%;
+  width: 210px;
+  height: 158px;
+  z-index: 2;
+  opacity: 0;
+}
 .open .photo{
   transform: translateY(0px) translateX(-50px) rotate(20deg);
   transition: transform 0.4s 0.6s ease, z-index 0.6s;
@@ -145,7 +154,7 @@
 }
 .open .photo2{
   transform: translateY(-250px) translateX(450px) rotate(20deg);
-  transition: transform 0.4s 0.6s ease, z-index 2.4s;
+  transition: transform 0.4s 0.6s ease, z-index 2.6s;
   z-index: 5;
   opacity: 1;
 }
@@ -163,10 +172,21 @@
 .open .photo4{
   opacity: 1;
   transform: translateY(-100px) translateX(337px) rotate(0deg);
-  transition: transform 0.4s 0.6s ease, z-index 2.4s;
+  transition: transform 0.4s 0.6s ease, z-index 2.6s;
   z-index: 4;
 }
 .close .photo4{
+  transform: translateY(0px);
+  transition: transform 0.4s ease, z-index 1s;
+  z-index: 1;
+}
+.open .photo5{
+  opacity: 1;
+  transform: translateY(-100px) translateX(337px) rotate(0deg);
+  transition: transform 0.4s 0.6s ease, z-index 2.6s;
+  z-index: 4;
+}
+.close .photo5{
   transform: translateY(0px);
   transition: transform 0.4s ease, z-index 1s;
   z-index: 1;
@@ -306,7 +326,7 @@ body {
 }
 #box{
   position: fixed;
-  z-index: 29;
+  z-index: 90;
   width: 100%;
   height: 100%;
   top: 0;
@@ -414,7 +434,7 @@ svg {
 
 .lock-scene{
   position: fixed;
-  z-index: 30;
+  z-index: 100;
   inset: 0;
   background:#1c1c1c;
   display:flex;
@@ -566,4 +586,130 @@ svg {
 .lock-scene.hide {
   opacity: 0;
   pointer-events: none;
+}
+.bodyslider{
+  position: fixed;
+  inset: 0;
+  z-index: 9999;   /* ВАЖНО: выше замка */
+  pointer-events: auto;
+  overflow: hidden;
+  font-family: "Roboto Slab", serif;
+  text-transform: uppercase;
+  background: url("http://opi.com/sites/default/files/collection-fiftyshades-gallery_0.jpg") no-repeat center;
+  background-size: cover;
+}
+
+.bodyslider .slider{
+  position: absolute;
+  inset: 0;
+}
+
+.bodyslider .slider > div{
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-items: center;
+  justify-content: center;
+}
+
+h1, .fa {
+  font-size: 3em !important;
+  text-align: center;
+  top: 40%;
+  position: relative;
+}
+
+.fa {
+  font-size: 10em !important;
+  display: block;
+}
+.bodyslider h1,
+.bodyslider .fa{
+  position: static !important;
+  top: auto !important;
+  transform: none !important;
+  margin: 0 !important;
+  text-align: center;
+}
+.up {
+  top: -10000px;
+}
+
+.down {
+  top: 10000px;
+}
+
+.right {
+  left: -10000px;
+}
+
+.left {
+  left: 10000px;
+}
+
+.red {
+  background: #9C0000;
+  color: white !important;
+}
+
+.green {
+  background: green;
+}
+
+.blue {
+  background: blue;
+}
+
+.purple {
+  background: purple;
+}
+
+.pink {
+  background: pink;
+}
+
+.yellow {
+  background: yellow;
+}
+
+.white {
+  background: white;
+  color: #9C0000 !important;
+}
+.bodyslider .slider > div{
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-items: center;
+  justify-content: center;
+
+  transform: translate(0,0);
+  transition: transform 0.5s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+  will-change: transform;
+
+  z-index: 1;
+}
+
+/* активный сверху */
+.bodyslider .slider > div.active{ z-index: 10; }
+
+/* остальные тоже видимы, но не кликабельны */
+.bodyslider .slider > div{ pointer-events: none; }
+.bodyslider .slider > div.active{ pointer-events: auto; }
+
+/* выезды */
+.bodyslider .slider > div.up    { transform: translateY(-120vh); }
+.bodyslider .slider > div.down  { transform: translateY( 120vh); }
+.bodyslider .slider > div.left  { transform: translateX(-120vw); }
+.bodyslider .slider > div.right { transform: translateX( 120vw); }
+
+/* скрытие всего слоя в конце */
+.bodyslider.hide{
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 1s ease;
 }
