@@ -215,30 +215,62 @@ const CODE = "5139"; // ← тут меняешь пароль на любой 4
   resetSoft();
 })();
 
-  document.querySelectorAll('.btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const target = btn.dataset.target;
-      const up = btn.classList.contains('up');
+document.addEventListener("DOMContentLoaded", () => {
+  const slides = Array.from(document.querySelectorAll(".bodyslider .slider > div"));
+  if (!slides.length) return;
 
-      values[target] = up
-        ? (values[target] + 1) % 10
-        : (values[target] + 9) % 10;
+  // старт с .six
+  let index = slides.length - 1;
 
-      updateRoller(target, values[target]);
-      checkCode();
+  // направления строго по твоему сценарию
+  const dirByClass = {
+    six: "down",
+    five: "up",
+    four: "right",
+    three: "left",
+    two: "down",
+    one: "up",
+  };
+
+  // активный только один
+  slides.forEach(s => s.classList.remove("active", "up", "down", "left", "right"));
+  slides[index].classList.add("active");
+
+  slides.forEach((slide, i) => {
+    slide.addEventListener("click", () => {
+      if (i !== index) return;
+
+      const key =
+        slide.classList.contains("six") ? "six" :
+        slide.classList.contains("five") ? "five" :
+        slide.classList.contains("four") ? "four" :
+        slide.classList.contains("three") ? "three" :
+        slide.classList.contains("two") ? "two" :
+        slide.classList.contains("one") ? "one" : null;
+
+      const dir = dirByClass[key] || "up";
+
+      const onEnd = (e) => {
+        if (e.propertyName !== "transform") return;
+        slide.removeEventListener("transitionend", onEnd);
+
+        // после уезда: слайд остаётся "в стороне", а следующий становится активным
+        slide.classList.remove("active");
+
+        index--;
+
+        if (slides[index]) {
+          slides[index].classList.add("active");
+        } else {
+          // конец: только теперь открываем замок
+          document.querySelector(".bodyslider")?.classList.add("hide");
+        }
+      };
+
+      slide.addEventListener("transitionend", onEnd);
+
+      // запускаем уезд
+      slide.classList.add(dir);
     });
   });
-
-  function checkCode() {
-    if (values.tens === 2 && values.ones === 3) {
-      padlock.classList.add('open');
-      content.classList.add('visible');
-    } else {
-      padlock.classList.remove('open');
-      content.classList.remove('visible');
-
-      padlock.classList.add('shake');
-      setTimeout(() => padlock.classList.remove('shake'), 300);
-    }
-  }
-
+});
