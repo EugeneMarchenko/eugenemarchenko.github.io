@@ -1,0 +1,731 @@
+#envelope {
+  position: relative;
+  width: 600px;
+  height: 500px;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+  margin-left: auto;
+  margin-right: auto;
+  top: 200px;
+  background-color: #D4CAB0;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.front {
+  position: absolute;
+  width: 0;
+  height: 0;
+  z-index: 3;
+}
+
+.flap {
+  border-left: 300px solid transparent;
+  border-right: 300px solid transparent;
+  border-bottom: 242px solid transparent;
+  border-top: 258px solid #D4CAB0; 
+  transform-origin: top;
+  pointer-events: none;
+}
+
+.pocket {
+  border-left: 300px solid #F1E9D2; 
+  border-right: 300px solid #F1E9D2;
+  border-bottom: 250px solid #E7DFC6; 
+  border-top: 250px solid transparent;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+}
+.letter {
+  position: relative;
+  background-color: #fff;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  height: 90%;
+  top: 5%;
+  border-radius: 6px;
+  box-shadow: 0 6px 30px rgba(0, 0, 0, 0.15);
+  font-family: "Caveat", cursive;
+}
+
+.letter:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.words {
+  position: absolute;
+  left: 10%;
+  width: 80%;
+  height: 14%;
+  
+}
+
+.words.line1 {
+  top: 10%;
+  width: 20%;
+  height: 7%;
+  font-size: 1rem;
+}
+
+.words.line2 {
+  top: 15%;
+  text-align: left;
+  font-size: 1rem;
+}
+
+.words.line3 {
+  top: 40%;
+  font-size: 1.1rem;
+  text-align: center;
+}
+.photo {
+  position: absolute;
+  top: 40%;
+  left: 10%;
+  width: 210px;
+  height: 158px;
+}
+.photo1 {
+  position: absolute;
+  top: 40%;
+  left: 10%;
+  width: 210px;
+  height: 158px;
+}
+.photo2 {
+  position: absolute;
+  top: 40%;
+  left: 10%;
+  width: 210px;
+  height: 158px;
+  z-index: 2;
+  opacity: 0;
+}
+.photo3 {
+  position: absolute;
+  top: 25%;
+  left: 75%;
+  width: 125px;
+  height: 369px;
+  z-index: 2;
+  opacity: 0;
+}
+.photo4 {
+  position: absolute;
+  top: 40%;
+  left: 10%;
+  width: 210px;
+  height: 158px;
+  z-index: 2;
+  opacity: 0;
+}
+.photo5 {
+  position: absolute;
+  top: 40%;
+  left: 10%;
+  width: 210px;
+  height: 158px;
+  z-index: 2;
+  opacity: 0;
+}
+.open .photo{
+  transform: translateY(0px) translateX(-50px) rotate(20deg);
+  transition: transform 0.4s 0.6s ease, z-index 0.6s;
+}
+.close .photo{
+  transform: translateY(0px);
+  transition: transform 0.4s ease, z-index 1s;
+  z-index: 1;
+}
+
+.open .photo1{
+  transform: translateY(0px) translateX(270px) rotate(-20deg);
+  transition: transform 0.4s 0.6s ease, z-index 0.6s;
+}
+.close .photo1{
+  transform: translateY(0px);
+  transition: transform 0.4s ease, z-index 1s;
+  z-index: 1;
+}
+.open .photo2{
+  transform: translateY(-250px) translateX(450px) rotate(20deg);
+  transition: transform 0.4s 0.6s ease, z-index 2.6s;
+  z-index: 5;
+  opacity: 1;
+}
+.open .photo3{
+  opacity: 1;
+  transform: translateY(-200px) translateX(-480px) rotate(-20deg);
+  transition: transform 0.4s 0.6s ease, z-index 1.6s;
+  z-index: 3;
+}
+.close .photo3{
+  transform: translateY(0px);
+  transition: transform 0.4s ease, z-index 1s;
+  z-index: 1;
+}
+.open .photo4{
+  opacity: 1;
+  transform: translateY(-100px) translateX(337px) rotate(0deg);
+  transition: transform 0.4s 0.6s ease, z-index 2.6s;
+  z-index: 4;
+}
+.close .photo4{
+  transform: translateY(0px);
+  transition: transform 0.4s ease, z-index 1s;
+  z-index: 1;
+}
+.open .photo5{
+  opacity: 1;
+  transform: translateY(-100px) translateX(337px) rotate(0deg);
+  transition: transform 0.4s 0.6s ease, z-index 2.6s;
+  z-index: 4;
+}
+.close .photo5{
+  transform: translateY(0px);
+  transition: transform 0.4s ease, z-index 1s;
+  z-index: 1;
+}
+.close .photo2{
+  transform: translateY(0px);
+  transition: transform 0.4s ease, z-index 1s;
+  z-index: 1;
+}
+.open .flap {
+  transform: rotateX(180deg);
+  transition: transform 0.4s ease, z-index 0.6s;
+  z-index: 1;
+}
+
+.close .flap {
+  transform: rotateX(0deg);
+  transition: transform 0.4s 0.6s ease, z-index 1s;
+  z-index: 5;
+}
+
+.close .letter {
+  transform: translateY(0px);
+  transition: transform 0.4s ease, z-index 1s;
+  z-index: 1;
+}
+
+.open .letter {
+  transform: translateY(-250px);
+  transition: transform 0.4s 0.6s ease, z-index 0.6s;
+  z-index: 2;
+}
+
+.a1 {
+  left: 20%;
+  transform: scale(0.6);
+  opacity: 1;
+  -webkit-animation: slideUp 4s linear 1, sideSway 2s ease-in-out 4 alternate;
+  -moz-animation: slideUp 4s linear 1, sideSway 2s ease-in-out 4 alternate;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+  -webkit-animation-delay: 0.7s;
+  animation-delay: 0.7s;
+}
+
+.a2 {
+  left: 55%;
+  transform: scale(1);
+  opacity: 1;
+  -webkit-animation: slideUp 5s linear 1, sideSway 4s ease-in-out 2 alternate;
+  -moz-animation: slideUp 5s linear 1, sideSway 4s ease-in-out 2 alternate;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+  -webkit-animation-delay: 0.7s;
+  animation-delay: 0.7s;
+}
+
+.a3 {
+  left: 10%;
+  transform: scale(0.8);
+  opacity: 1;
+  -webkit-animation: slideUp 7s linear 1, sideSway 2s ease-in-out 6 alternate;
+  -moz-animation: slideUp 7s linear 1, sideSway 2s ease-in-out 6 alternate;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+  -webkit-animation-delay: 0.7s;
+  animation-delay: 0.7s;
+}
+
+@-webkit-keyframes slideUp {
+  0% {
+    top: 0;
+  }
+  100% {
+    top: -600px;
+  }
+}
+@keyframes slideUp {
+  0% {
+    top: 0;
+  }
+  100% {
+    top: -600px;
+  }
+}
+@-webkit-keyframes sideSway {
+  0% {
+    margin-left: 0px;
+  }
+  100% {
+    margin-left: 50px;
+  }
+}
+@keyframes sideSway {
+  0% {
+    margin-left: 0px;
+  }
+  100% {
+    margin-left: 50px;
+  }
+}
+body {
+  background-color: #f1f1f1; /* Soft lavender for a romantic, dreamy feel */
+}
+
+.envlope-wrapper {
+  height: 750px;
+}
+
+.reset {
+  text-align: center;
+}
+
+.reset button {
+  font-weight: 800;
+  font-style: normal;
+  transition: all 0.1s linear;
+  -webkit-appearance: none;
+  background-color: transparent;
+  border: solid 2px #d9534f;
+  border-radius: 4px;
+  color: #d9534f;
+  display: inline-block;
+  font-size: 14px;
+  text-transform: uppercase;
+  margin: 5px;
+  padding: 10px;
+  line-height: 1em;
+  text-decoration: none;
+  min-width: 120px;
+  cursor: pointer;
+}
+
+.reset button:hover {
+  background-color: #d9534f;
+  color: #fff;
+}
+#box{
+  position: fixed;
+  z-index: 90;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: #1c1c1c;
+  opacity: 1;
+  transition: opacity 1s ease;
+ }
+
+#box.hide {
+  opacity: 0;
+  pointer-events: none;
+}
+
+ #hide{
+  display: block;
+  text-align: center;
+  font-weight: 800;
+  font-style: normal;
+  transition: all 0.1s linear;
+  -webkit-appearance: none;
+  background-color: transparent;
+  border: solid 2px #000000;
+  border-radius: 4px;
+  color: #000000;
+  display: inline-block;
+  font-size: 14px;
+  text-transform: uppercase;
+  margin: 5px;
+  margin-top: 25px;
+  padding: 10px;
+  line-height: 1em;
+  text-decoration: none;
+  min-width: 120px;
+  cursor: pointer;
+ }
+#no{
+  display: block;
+  text-align: center;
+  font-weight: 800;
+  font-style: normal;
+  transition: all 0.1s linear;
+  -webkit-appearance: none;
+  background-color: transparent;
+  border: solid 2px #000000;
+  border-radius: 4px;
+  color: #000000;
+  display: inline-block;
+  font-size: 14px;
+  text-transform: uppercase;
+  margin: 5px;
+  margin-top: 25px;
+  padding: 10px;
+  line-height: 1em;
+  text-decoration: none;
+  min-width: 120px;
+  cursor: pointer;
+}
+.btn{
+  text-align: center;
+  width: 100%;
+}
+.container{
+  min-width: 320px;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.heart {
+  position: relative;
+  left: 50%;
+  top: 150px;
+  width: auto;
+  transform: translateX(-50%);
+  display: inline-block;
+  z-index: 2;
+  &:hover {
+    cursor: pointer;
+  }
+  .shape-heart {
+    transition: fill .25s ease-in;
+  }
+  &.active {
+    .shape-heart {
+      fill: #FF4136;
+    }
+  }
+}
+svg {
+  display: block;
+  width: 80px;
+  height: 80px;
+}
+
+.clickme {
+  position: relative;
+  left: 70%;
+  @media screen and (min-width: 480px) {
+    left: 65%;
+  }
+  top: 130px;
+  transform: scale(4);
+  z-index: 1;
+}
+
+.lock-scene{
+  position: fixed;
+  z-index: 100;
+  inset: 0;
+  background:#1c1c1c;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  opacity: 1;
+  transition: opacity 1s ease;
+}
+.lock-scene.hide{
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Электрозамок */
+.electric-lock{
+  width: 340px;
+  border-radius: 18px;
+  padding: 18px;
+  background:
+    radial-gradient(240px 160px at 30% 20%, rgba(255,255,255,.10), transparent 60%),
+    linear-gradient(180deg, #2a2a2a, #141414);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.08),
+    0 22px 45px rgba(0,0,0,.65);
+  border: 1px solid rgba(255,255,255,.08);
+  transform: translateY(0);
+  transition: transform .35s ease, opacity .6s ease;
+}
+
+.electric-lock.unlocking{
+  transform: translateY(10px);
+  opacity: 0;
+}
+
+.lock-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom: 12px;
+}
+
+.lock-title{
+  font-family: monospace;
+  letter-spacing: 2px;
+  font-size: 12px;
+  opacity: .85;
+  color: #d8d8d8;
+}
+
+.lock-led{
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  background: #444;
+  box-shadow: 0 0 0 rgba(0,0,0,0);
+  transition: background .2s ease, box-shadow .2s ease;
+}
+.lock-led.ready{
+  background: #6aa6ff;
+  box-shadow: 0 0 18px rgba(106,166,255,.45);
+}
+.lock-led.ok{
+  background: #44d17a;
+  box-shadow: 0 0 20px rgba(68,209,122,.55);
+}
+.lock-led.bad{
+  background: #ff4d4d;
+  box-shadow: 0 0 20px rgba(255,77,77,.45);
+}
+
+/* Дисплей */
+.lock-display{
+  border-radius: 14px;
+  padding: 14px 14px 12px;
+  background:
+    radial-gradient(240px 120px at 30% 20%, rgba(255,255,255,.08), transparent 65%),
+    linear-gradient(180deg, #0f1b14, #08110c);
+  border: 1px solid rgba(255,255,255,.08);
+  box-shadow: inset 0 0 18px rgba(0,0,0,.6);
+  margin-bottom: 14px;
+}
+
+.display-label{
+  font-family: "Caveat", cursive;
+  font-size: 18px;
+  color: rgba(170, 240, 200, .9);
+  opacity: .95;
+  margin-bottom: 6px;
+}
+
+.display-dots{
+  font-family: monospace;
+  font-size: 28px;
+  letter-spacing: 6px;
+  color: #78ffb5;
+  text-shadow: 0 0 12px rgba(120,255,181,.28);
+  margin-bottom: 6px;
+}
+
+.display-status{
+  font-family: monospace;
+  font-size: 12px;
+  opacity: .85;
+  color: rgba(200,255,225,.75);
+}
+
+/* Keypad */
+.keypad{
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.key{
+  border: none;
+  border-radius: 12px;
+  padding: 14px 0;
+  font-size: 18px;
+  color: #eaeaea;
+  background:
+    radial-gradient(80px 40px at 30% 20%, rgba(255,255,255,.12), transparent 60%),
+    linear-gradient(180deg, #3a3a3a, #1e1e1e);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.10),
+    0 10px 18px rgba(0,0,0,.45);
+  cursor:pointer;
+  transition: transform .08s ease, filter .2s ease;
+  user-select:none;
+}
+.key:hover{ filter: brightness(1.08); }
+.key:active{ transform: translateY(1px) scale(0.99); }
+
+.key.key-fn{
+  background:
+    radial-gradient(80px 40px at 30% 20%, rgba(255,255,255,.10), transparent 60%),
+    linear-gradient(180deg, #2f2f2f, #141414);
+  color: #f1d9a8;
+}
+
+/* Ошибка/успех эффекты */
+.electric-lock.shake{
+  animation: elShake .28s;
+}
+@keyframes elShake{
+  0%,100%{ transform: translateX(0); }
+  25%{ transform: translateX(-5px); }
+  75%{ transform: translateX(5px); }
+}
+.lock-scene.hide {
+  opacity: 0;
+  pointer-events: none;
+}
+.bodyslider{
+  position: fixed;
+  inset: 0;
+  z-index: 9999;   /* ВАЖНО: выше замка */
+  pointer-events: auto;
+  overflow: hidden;
+  font-family: "Roboto Slab", serif;
+  text-transform: uppercase;
+  background: url("http://opi.com/sites/default/files/collection-fiftyshades-gallery_0.jpg") no-repeat center;
+  background-size: cover;
+}
+
+.bodyslider .slider{
+  position: absolute;
+  inset: 0;
+}
+
+.bodyslider .slider > div{
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-items: center;
+  justify-content: center;
+}
+
+h1, .fa {
+  font-size: 3em !important;
+  text-align: center;
+  top: 40%;
+  position: relative;
+}
+
+.fa {
+  font-size: 10em !important;
+  display: block;
+}
+.bodyslider h1,
+.bodyslider .fa{
+  position: static !important;
+  top: auto !important;
+  transform: none !important;
+  margin: 0 !important;
+  text-align: center;
+}
+.up {
+  top: -10000px;
+}
+
+.down {
+  top: 10000px;
+}
+
+.right {
+  left: -10000px;
+}
+
+.left {
+  left: 10000px;
+}
+
+.red {
+  background: #9C0000;
+  color: white !important;
+}
+
+.green {
+  background: green;
+}
+
+.blue {
+  background: blue;
+}
+
+.purple {
+  background: purple;
+}
+
+.pink {
+  background: pink;
+}
+
+.yellow {
+  background: yellow;
+}
+
+.white {
+  background: white;
+  color: #9C0000 !important;
+}
+.bodyslider .slider > div{
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-items: center;
+  justify-content: center;
+
+  transform: translate(0,0);
+  transition: transform 0.5s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+  will-change: transform;
+
+  z-index: 1;
+}
+
+/* активный сверху */
+.bodyslider .slider > div.active{ z-index: 10; }
+
+/* остальные тоже видимы, но не кликабельны */
+.bodyslider .slider > div{ pointer-events: none; }
+.bodyslider .slider > div.active{ pointer-events: auto; }
+
+/* выезды */
+.bodyslider .slider > div.up    { transform: translateY(-120vh); }
+.bodyslider .slider > div.down  { transform: translateY( 120vh); }
+.bodyslider .slider > div.left  { transform: translateX(-120vw); }
+.bodyslider .slider > div.right { transform: translateX( 120vw); }
+
+/* скрытие всего слоя в конце */
+.bodyslider.hide{
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 1s ease;
+}
+.heart{
+  --dx: 0px;
+  --dy: 0px;
+  transform: translateX(-50%) translate(var(--dx), var(--dy));
+  transition: transform 0.4s ease;
+}
+
+/* пока сердце "убегает" — курсор обычный */
+.heart:not(.clickable){
+  cursor: default;
+}
+
+/* когда можно кликать */
+.heart.clickable{
+  cursor: pointer;
+}
