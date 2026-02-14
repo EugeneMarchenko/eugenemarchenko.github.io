@@ -717,7 +717,7 @@ h1, .fa {
   --dx: 0px;
   --dy: 0px;
   transform: translateX(-50%) translate(var(--dx), var(--dy));
-  transition: transform 0.4s ease;
+  transition: transform 0.22s ease;
 }
 
 /* пока сердце "убегает" — курсор обычный */
@@ -729,3 +729,4 @@ h1, .fa {
 .heart.clickable{
   cursor: pointer;
 }
+
