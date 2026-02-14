@@ -106,9 +106,78 @@ const circ2 = new mojs.Shape({
 });
 
 timeline.add(circ, circ2);
+// ===== HEART RUN AWAY 3 TIMES THEN CLICKABLE =====
+let escapesLeft = 7;
+let heartReadyToClick = false;
+let escapeCooldown = false;
 
+const heartBox = document.getElementById("box");      // слой с сердцем
+const heartWrap = document.querySelector(".heart");   // сам блок сердца
+
+function setHeartOffset(dx, dy){
+  heartWrap.style.setProperty("--dx", dx + "px");
+  heartWrap.style.setProperty("--dy", dy + "px");
+}
+
+function heartCenter(){
+  const r = heartWrap.getBoundingClientRect();
+  return { x: r.left + r.width / 2, y: r.top + r.height / 2 };
+}
+
+function rand(min, max){
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function escapeFromMouse(mx, my){
+  if (escapeCooldown || heartReadyToClick || escapesLeft <= 0) return;
+
+  const { x, y } = heartCenter();
+  const dx = x - mx;
+  const dy = y - my;
+
+  // если мышь далеко — не убегаем
+  const dist = Math.hypot(dx, dy);
+  if (dist > 110) return;
+
+  escapeCooldown = true;
+  escapesLeft--;
+
+  // выбираем направление "от мыши"
+  const dirX = dx === 0 ? (Math.random() > 0.5 ? 1 : -1) : Math.sign(dx);
+  const dirY = dy === 0 ? (Math.random() > 0.5 ? 1 : -1) : Math.sign(dy);
+
+  // ограничим увод, чтобы сердце не улетало за экран
+  const boxRect = heartBox.getBoundingClientRect();
+  const hRect = heartWrap.getBoundingClientRect();
+
+  const maxX = Math.max(40, Math.floor((boxRect.width / 2) - hRect.width));
+  const maxY = Math.max(40, Math.floor((boxRect.height / 2) - hRect.height));
+
+  const moveX = dirX * rand(80, Math.min(220, maxX));
+  const moveY = dirY * rand(60, Math.min(180, maxY));
+
+  setHeartOffset(moveX, moveY);
+
+  // небольшая пауза, чтобы не триггерилось сто раз подряд
+  setTimeout(() => {
+    escapeCooldown = false;
+
+    if (escapesLeft <= 0) {
+      // вернуть в исходное положение и сделать кликабельным
+      setHeartOffset(0, 0);
+      heartReadyToClick = true;
+      heartWrap.classList.add("clickable");
+    }
+  }, 320);
+}
+
+// слушаем движение мыши по слою с сердцем
+heartBox.addEventListener("mousemove", (e) => {
+  escapeFromMouse(e.clientX, e.clientY);
+});
 // when clicking the button start the timeline/animation:
 $(el).on("click", function () {
+  if (!heartReadyToClick) return;  
   if ($(el).hasClass("active")) return; // защита от повторного клика
 
   $(el).addClass("active");
@@ -274,5 +343,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
+
 
 
