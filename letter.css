@@ -713,3 +713,19 @@ h1, .fa {
   pointer-events: none;
   transition: opacity 1s ease;
 }
+.heart{
+  --dx: 0px;
+  --dy: 0px;
+  transform: translateX(-50%) translate(var(--dx), var(--dy));
+  transition: transform 0.4s ease;
+}
+
+/* пока сердце "убегает" — курсор обычный */
+.heart:not(.clickable){
+  cursor: default;
+}
+
+/* когда можно кликать */
+.heart.clickable{
+  cursor: pointer;
+}
