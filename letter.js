@@ -177,7 +177,7 @@ heartBox.addEventListener("mousemove", (e) => {
 });
 // when clicking the button start the timeline/animation:
 $(el).on("click", function () {
-  if (!heartReadyToClick) return;  
+   if (!heartReadyToClick) return;
   if ($(el).hasClass("active")) return; // защита от повторного клика
 
   $(el).addClass("active");
@@ -343,6 +343,3 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
-
-
-
